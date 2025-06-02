@@ -1,0 +1,6 @@
+streamlit
+sqlite3
+pandas
+streamlit_option_menu
+streamlit_ace
+matplotlib
