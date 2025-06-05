@@ -7,58 +7,79 @@ import matplotlib.pyplot as plt
 import os
 
 # --- Page Configuration ---
-st.set_page_config(page_title="Xploria Data Explorer", layout="wide")
+st.set_page_config(page_title="AI Tools Directory", layout="wide")
 
 st.markdown("""
-    <style>
-        .main {
-            background-color: blue;        
+<style>
+
+/* Entire app background */
+[data-testid="stAppViewContainer"] {
+    background: linear-gradient(to right, #44104F, #782B84);
+    color: white;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #00172B;
+}
+
+/* Top navigation bar */
+header[data-testid="stHeader"] {
+    background: linear-gradient(to right, #44104F, #782B84);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #44104F;
+    border-radius: 50px;
+}
+          
+
+div[data-baseweb="input"] > div {
+    background-color: #00172B;
+    color: white;
+}
+
+div[data-baseweb="input"] > div > input {
+    color: white;
+}
+div[data-baseweb="textarea"] > div > textarea {
+    background-color: #00172B;
+    color: white;
+}     
+
+div[data-baseweb="input"] > div {
+            background-color: #00172B;
+            color: white;
+}
+div[data-baseweb="input"] > div > input {
+            color: white;
+}
+div[data-baseweb="textarea"] > div > textarea {
+            background-color: #00172B;
+    color: white;
         }
 
-        .css-1d391kg > div:first-child {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 280px;
-            height: 100vh;
-            background-color: #2C3E50 !important;
-            color: #ECECEC !important;
-            padding: 20px;
-            box-shadow: -4px 0 10px rgba(0,0,0,0.3);
-            overflow-y: auto;
-            z-index: 9999;
-        }
+.stSelectbox > div > div {
+            background-color: #00172B;
+            color: white;
+}
+.stButton > button {
+            background-color: #00172B;
+            color: white;
+}
+.stButton > button:hover {
+    background: linear-gradient(to left, #ff14fb, #782B84);
+    color: white;
+    border: 3px solid #44104F;
+}              
 
-        .css-1d391kg > div:nth-child(2) {
-            margin-right: 300px;
-            padding: 20px;
-        }
-
-        .css-1d391kg > div:first-child h2, 
-        .css-1d391kg > div:first-child h3 {
-            color: #FF6B6B !important;
-        }
-
-        .css-1d391kg > div:first-child button, 
-        .css-1d391kg > div:first-child a {
-            color: #ECECEC !important;
-            background: transparent !important;
-            border: none !important;
-            font-weight: 600;
-            padding: 8px 0;
-            display: block;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .css-1d391kg > div:first-child button:hover, 
-        .css-1d391kg > div:first-child a:hover {
-            color: #FF6B6B !important;
-        }
-    </style>
+          
+</style>
 """, unsafe_allow_html=True)
-
 
 # --- SQLite3 Connection ---
 DB_PATH = "data.db"
@@ -73,32 +94,45 @@ def get_connection():
 conn = get_connection()
 
 
-# --- Sidebar Navigation Menu ---
+st.sidebar.markdown("<h1 style='background: linear-gradient(to right, #ff14fb, #ff69b4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>AI Tools Directory</h1>", unsafe_allow_html=True)
+
+
 with st.sidebar:
     selected_option = option_menu(
-        menu_title="Xploria Navigation",
-        options=["Xploria Overview", "Database Tables", "SQL Query Editor", "Database Designer", "Analytics & Insights"],
+        menu_title="Navigation Menu",
+        options=["Home", "Database Tables", "SQL Query Editor", "Database Designer", "Analytics & Insights"],
         icons=["house-fill", "table", "terminal", "database", "bar-chart-line-fill"],
         menu_icon="grid-fill",
         default_index=0,
         styles={
-            "container": {"padding": "10px", "background-color": "#1f1f1f"},
+            "container": {"padding": "10px", "background-color": "#00172B"},
             "icon": {"color": "white", "font-size": "18px"},
             "nav-link": {
-                "font-size": "16px",
+                "font-size": "14px",  # Reduced font size
                 "text-align": "left",
                 "margin": "4px 0",
                 "--hover-color": "#2a2a2a",
+                "white-space": "nowrap",  # Prevent text wrapping
+                "overflow": "hidden",  # Hide overflowing text
+                "text-overflow": "ellipsis",  # Show ellipsis for overflowing text
             },
-            "nav-link-selected": {"background-color": "#007ACC", "color": "white"},
+            "nav-link-selected": {"background": "linear-gradient(to right, #ff69b4, #ff14fb)", "color": "white"},
         },
     )
 
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("<h2>AI Tools Directory:</h2> Streamlined data management and analysis." \
+"Your data, simplified. Powered by SQLite and Streamlit, empowering data-driven insights.",unsafe_allow_html=True )
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("<div style='position: relative; bottom: 0; padding-bottom: 10px;'>Copyright 2025 | Made By <a href='https://github.com/faisalrafiq031' style='background: linear-gradient(to right, #ff14fb, #ff69b4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Faisal Rafiq</a></div>", unsafe_allow_html=True)
+
 # --- Page: Overview ---
-if selected_option == "Xploria Overview":
-    st.markdown("<h1>Xploria Data Explorer</h1>", unsafe_allow_html=True)
+if selected_option == "Home":
+    st.markdown("<h1>AI Tools Directory Explorer</h1>", unsafe_allow_html=True)
     st.markdown("""
-    Welcome to the **Xploria Data Explorer** - a streamlined interface built to manage and analyze data.
+    Welcome to the **AI Tools Directory** - a streamlined interface built to manage and analyze data.
 
     ### Application Workflow:
     1. **Data Import**: Data is stored in a local SQLite database.
@@ -139,7 +173,7 @@ elif selected_option == "SQL Query Editor":
     sql_input = st_ace(
         placeholder="Write your SQL queries here...",
         language="sql",
-        theme="tomorrow_night_bright",
+        theme="dracula",
         font_size=16,
         tab_size=4,
         show_gutter=True,
@@ -148,7 +182,7 @@ elif selected_option == "SQL Query Editor":
         auto_update=True,
         key="ace_editor",
         min_lines=10,
-        height=250,
+        height=200,
     )
 
     if sql_input and sql_input.strip():
@@ -230,12 +264,12 @@ elif selected_option == "Analytics & Insights":
     if conn:
         cursor = conn.cursor()
 
-        # ✅ Get all table names in sqlite3
+        # Get all table names in sqlite3
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
         tables = [t[0] for t in cursor.fetchall()]
         row_counts = []
 
-        # ✅ Get row count for each table
+        # Get row count for each table
         for table in tables:
             try:
                 cursor.execute(f"SELECT COUNT(*) FROM {table}")
@@ -244,7 +278,7 @@ elif selected_option == "Analytics & Insights":
             except:
                 row_counts.append(0)
 
-        # ✅ Display table overview
+        # Display table overview
         df_summary = pd.DataFrame({
             "Table": tables,
             "Rows": row_counts
@@ -255,12 +289,12 @@ elif selected_option == "Analytics & Insights":
 
         col1, col2 = st.columns(2)
 
-        # 📊 Chart 1: Row count per table
+        # Chart 1: Row count per table
         with col1:
             st.markdown("**Row Count per Table**")
             st.bar_chart(df_summary.set_index("Table")["Rows"])
 
-        # ⭐ Chart 2: Rating-wise count (if table and column exist)
+        # Chart 2: Rating-wise count (if table and column exist)
         with col2:
             st.markdown("**Tools by Rating (if available)**")
             try:
