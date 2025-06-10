@@ -8,7 +8,7 @@ import os
 import altair as alt
 
 # --- Page Configuration ---
-st.set_page_config(page_title="Xploria Data Explorer", layout="wide")
+st.set_page_config(page_title="AI Tools Directory", layout="wide")
 
 st.markdown("""
 <style>
